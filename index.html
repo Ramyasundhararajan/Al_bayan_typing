@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Al Bayan Typing Center - UAE Government Services</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#0038A7',  // UAE blue
+                        secondary: '#FCB730', // Gold accent
+                        accent: '#D3AC2B',
+                        light: '#F7F7F7',
+                        dark: '#1E1E1E'
+                    },
+                    fontFamily: {
+                        sans: ['Montserrat', 'sans-serif'],
+                        arabic: ['Noto Sans Arabic', 'sans-serif']
+                    },
+                    boxShadow: {
+                        '3d': '0 8px 30px -5px rgba(0, 56, 167, 0.3)',
+                        'float': '0 15px 35px rgba(0, 0, 0, 0.1)'
+                    }
+                }
+            }
+        }
+    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Noto+Sans+Arabic:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --slide-duration: 0.4s;
+        }
+        
+        body {
+            overflow-x: hidden;
+            font-feature-settings: 'liga' off;
+        }
+        
+        .hero-gradient {
+            background: linear-gradient(135deg, rgba(0,56,167,0.95) 0%, rgba(0,80,181,0.95) 100%), 
+                        url('https://images.unsplash.com/photo-1518684079-3c830dcef090?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80') center/cover fixed;
+            background-blend-mode: overlay;
+        }
+        
+        .service-card {
+            transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+            perspective: 1000px;
+            transform-style: preserve-3d;
+        }
+        
+        .service-card:hover {
+            transform: translateY(-5px) scale(1.02);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+        }
+        
+        .nav-link {
+            position: relative;
+        }
+        
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: 0;
+            left: 0;
+            background-color: #FCB730;
+            transition: width 0.3s;
+        }
+        
+        .nav-link:hover::after {
+            width: 100%;
+        }
+        
+        .typing-text {
+            border-right: 3px solid #FCB730;
+            animation: blink 0.75s step-end infinite;
+        }
+        
+        @keyframes blink {
+            from, to { border-color: transparent }
+            50% { border-color: #FCB730; }
+        }
+        
+        .hover-effect {
+            transform: translateY(0);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .hover-effect:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+        }
+        
+        .slide-in {
+            animation: slideIn var(--slide-duration) forwards;
+        }
+        
+        @keyframes slideIn {
+            from { transform: translateY(20px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+        
+        .stagger-1 { animation-delay: 0.1s; }
+        .stagger-2 { animation-delay: 0.2s; }
+        .stagger-3 { animation-delay: 0.3s; }
+        .stagger-4 { animation-delay: 0.4s; }
+        .stagger-5 { animation-delay: 0.5s; }
+    </style>
+</head>
+<body class="font-sans text-dark bg-light">
+    <!-- Navigation -->
+    <nav class="fixed w-full bg-white shadow-md z-50" style="backdrop-filter: blur(10px);">
+        <div class="container mx-auto px-4 py-3 flex justify-between items-center">
+            <a href="#" class="text-2xl font-bold text-primary flex items-center">
+                <i class="fas fa-file-alt text-secondary mr-2"></i>
+                <span>Al Bayan </span>
+            </a>
+            <div class="hidden lg:flex space-x-8">
+                <a href="#home" class="nav-link py-2 text-primary font-medium">Home</a>
+                <a href="#services" class="nav-link py-2 text-primary font-medium">Services</a>
+                <a href="#about" class="nav-link py-2 text-primary font-medium">About</a>
+                <a href="#testimonials" class="nav-link py-2 text-primary font-medium">Testimonials</a>
+                <a href="#contact" class="nav-link py-2 text-primary font-medium">Contact</a>
+                <a href="#" class="bg-primary text-white py-2 px-6 rounded-full font-medium hover:bg-blue-900 transition hover-effect">
+                    <i class="fas fa-phone-alt mr-2"></i> Call Now
+                </a>
+            </div>
+            <button class="lg:hidden focus:outline-none" id="mobile-menu-button">
+                <i class="fas fa-bars text-2xl text-primary"></i>
+            </button>
+        </div>
+        
+        <!-- Mobile Menu -->
+        <div class="lg:hidden hidden bg-white w-full absolute left-0 px-4 pb-4 shadow-lg" id="mobile-menu">
+            <div class="flex flex-col space-y-3">
+                <a href="#home" class="py-2 text-primary font-medium">Home</a>
+                <a href="#services" class="py-2 text-primary font-medium">Services</a>
+                <a href="#about" class="py-2 text-primary font-medium">About</a>
+                <a href="#testimonials" class="py-2 text-primary font-medium">Testimonials</a>
+                <a href="#contact" class="py-2 text-primary font-medium">Contact</a>
+                <a href="#" class="bg-primary text-white py-2 px-4 rounded-full font-medium text-center hover-effect">
+                    <i class="fas fa-phone-alt mr-2"></i> Call Now
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero-gradient flex items-center justify-center text-white pt-24 pb-16">
+        <div class="container mx-auto px-6 text-center py-20">
+            <div class="max-w-4xl mx-auto">
+                <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 slide-in">
+                    Al Bayan Typing Center
+                </h1>
+                <p class="text-xl md:text-2xl mb-10 opacity-90 slide-in stagger-1">
+                    UAE's premier government services typing center - Fast, accurate, and reliable processing for all your documentation needs.
+                </p>
+                <div class="flex flex-col sm:flex-row justify-center gap-4 slide-in stagger-2">
+                    <a href="#services" class="bg-secondary text-dark hover:bg-accent hover:text-white py-4 px-8 rounded-full font-semibold text-lg transition-all hover-effect">
+                        <i class="fas fa-list-ul mr-2"></i> Our Services
+                    </a>
+                    <a href="#contact" class="bg-white text-primary hover:bg-gray-100 hover-effect py-4 px-8 rounded-full font-semibold text-lg transition">
+                        <i class="fas fa-phone-volume mr-2"></i> Contact Us
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Bar -->
+    <div class="bg-primary text-white py-6 -mt-1">
+        <div class="container mx-auto px-6">
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
+                <div class="p-2 slide-in stagger-1">
+                    <div class="text-3xl md:text-4xl font-bold mb-2">24/7</div>
+                    <div class="text-secondary font-medium">Service Available</div>
+                </div>
+                <div class="p-2 slide-in stagger-2">
+                    <div class="text-3xl md:text-4xl font-bold mb-2">99.9%</div>
+                    <div class="text-secondary font-medium">Approval Rate</div>
+                </div>
+                <div class="p-2 slide-in stagger-3">
+                    <div class="text-3xl md:text-4xl font-bold mb-2">50+</div>
+                    <div class="text-secondary font-medium">Government Services</div>
+                </div>
+                <div class="p-2 slide-in stagger-4">
+                    <div class="text-3xl md:text-4xl font-bold mb-2">10K+</div>
+                    <div class="text-secondary font-medium">Clients Served</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Services Section -->
+    <section id="services" class="py-20 bg-white">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold text-primary mb-4 slide-in">Our Government Services</h2>
+                <div class="w-16 h-1 bg-secondary mx-auto mb-6 slide-in stagger-1"></div>
+                <p class="text-gray-600 max-w-2xl mx-auto slide-in stagger-2">
+                    Comprehensive typing services for all official UAE government procedures with guaranteed accuracy.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Service 1 -->
+                <div class="service-card bg-white p-6 rounded-xl shadow-md hover-effect slide-in stagger-1">
+                    <div class="text-primary text-4xl mb-4">
+                        <i class="fas fa-id-card"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3 text-primary">UAE Resident Visa Services</h3>
+                    <p class="text-gray-600 mb-4">
+                        Complete processing for all types of resident visas including renewal, cancellation and status change.
+                    </p>
+                    <ul class="mb-6 text-gray-600 space-y-2">
+                        <li class="flex items-center">
+                            <i class="fas fa-check-circle text-green-500 mr-2"></i> Employment visas
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check-circle text-green-500 mr-2"></i> Family sponsorship
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check-circle text-green-500 mr-2"></i> Investor visas
+                        </li>
+                    </ul>
+                    <a href="#contact" class="text-secondary font-semibold hover:text-accent inline-flex items-center">
+                        Enquire Now <i class="fas fa-arrow-right ml-2"></i>
+                    </a>
+                </div>
+
+                <!-- Service 2 -->
+                <div class="service-card bg-white p-6 rounded-xl shadow-md hover-effect slide-in stagger-2">
+                    <div class="text-primary text-4xl mb-4">
+                        <i class="fas fa-passport"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3 text-primary">Passport Services</h3>
+                    <p class="text-gray-600 mb-4">
+                        End-to-end passport application, renewal and replacement services for all nationalities.
+                    </p>
+                    <ul class="mb-6 text-gray-600 space-y-2">
+                        <li class="flex items-center">
+                            <i class="fas fa-check-circle text-green-500 mr-2"></i> New applications
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check-circle text-green-500 mr-2"></i> Renewals
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check-circle text-green-500 mr-2"></i> Emergency passports
+                        </li>
+                    </ul>
+                    <a href="#contact" class="text-secondary font-semibold hover:text-accent inline-flex items-center">
+                        Enquire Now <i class="fas fa-arrow-right ml-2"></i>
+                    </a>
+                </div>
+
+                <!-- Service 3 -->
+                <div class="service-card bg-white p-6 rounded-xl shadow-md hover-effect slide-in stagger-3">
+                    <div class="text-primary text-4xl mb-4">
+                        <i class="fas fa-id-badge"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3 text-primary">Emirates ID Services</h3>
+                    <p class="text-gray-600 mb-4">
+                        Complete Emirates ID processing from application to biometrics and collection.
+                    </p>
+                    <ul class="mb-6 text-gray-600 space-y-2">
+                        <li class="flex items-center">
+                            <i class="fas fa-check-circle text-green-500 mr-2"></i> New applications
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check-circle text-green-500 mr-2"></i> Renewals
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check-circle text-green-500 mr-2"></i> Lost/replacement
+                        </li>
+                    </ul>
+                    <a href="#contact" class="text-secondary font-semibold hover:text-accent inline-flex items-center">
+                        Enquire Now <i class="fas fa-arrow-right ml-2"></i>
+                    </a>
+                </div>
+
+                <!-- Service 4 -->
+                <div class="service-card bg-white p-6 rounded-xl shadow-md hover-effect slide-in stagger-1">
+                    <div class="text-primary text-4xl mb-4">
+                        <i class="fas fa-briefcase"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3 text-primary">Company Registration</h3>
+                    <p class="text-gray-600 mb-4">
+                        Full company setup services including trade license processing and documentation.
+                    </p>
+                    <ul class="mb-6 text-gray-600 space-y-2">
+                        <li class="flex items-center">
+                            <i class="fas fa-check-circle text-green-500 mr-2"></i> Mainland
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check-circle text-green-500 mr-2"></i> Freezone
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check-circle text-green-500 mr-2"></i> Offshore
+                        </li>
+                    </ul>
+                    <a href="#contact" class="text-secondary font-semibold hover:text-accent inline-flex items-center">
+                        Enquire Now <i class="fas fa-arrow-right ml-2"></i>
+                    </a>
+                </div>
+
+                <!-- Service 5 -->
+                <div class="service-card bg-white p-6 rounded-xl shadow-md hover-effect slide-in stagger-2">
+                    <div class="text-primary text-4xl mb-4">
+                        <i class="fas fa-building"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3 text-primary">Ministry of Labour Records</h3>
+                    <p class="text-gray-600 mb-4">
+                        Complete processing for establishment records and labor contracts with MOL.
+                    </p>
+                    <ul class="mb-6 text-gray-600 space-y-2">
+                        <li class="flex items-center">
+                            <i class="fas fa-check-circle text-green-500 mr-2"></i> New establishment cards
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check-circle text-green-500 mr-2"></i> Renewals
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check-circle text-green-500 mr-2"></i> Modifications
+                        </li>
+                    </ul>
+                    <a href="#contact" class="text-secondary font-semibold hover:text-accent inline-flex items-center">
+                        Enquire Now <i class="fas fa-arrow-right ml-2"></i>
+                    </a>
+                </div>
+
+                <!-- Service 6 -->
+                <div class="service-card bg-white p-6 rounded-xl shadow-md hover-effect slide-in stagger-3">
+                    <div class="text-primary text-4xl mb-4">
+                        <i class="fas fa-stethoscope"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3 text-primary">UAE Healthcare Services</h3>
+                    <p class="text-gray-600 mb-4">
+                        Medical insurance processing and health card applications with DHA and HAAD.
+                    </p>
+                    <ul class="mb-6 text-gray-600 space-y-2">
+                        <li class="flex items-center">
+                            <i class="fas fa-check-circle text-green-500 mr-2"></i>
+<!-- Continue from previous HTML -->
+                        <li class="flex items-center">
+                            <i class="fas fa-check-circle text-green-500 mr-2"></i> DHA Applications
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check-circle text-green-500 mr-2"></i> HAAD Applications
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check-circle text-green-500 mr-2"></i> Medical Insurance Forms
+                        </li>
+                    </ul>
+                    <a href="#contact" class="text-secondary font-semibold hover:text-accent inline-flex items-center">
+                        Enquire Now <i class="fas fa-arrow-right ml-2"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-20 bg-light">
+        <div class="container mx-auto px-6 text-center">
+            <h2 class="text-3xl md:text-4xl font-bold text-primary mb-4 slide-in">About Al Bayan Typing Center</h2>
+            <div class="w-16 h-1 bg-secondary mx-auto mb-6 slide-in stagger-1"></div>
+            <p class="text-gray-600 max-w-3xl mx-auto slide-in stagger-2">
+                Established in the heart of Dubai, Al Bayan Typing Center has been providing trusted and reliable government typing services for over a decade. Our mission is to simplify the documentation process for residents, expatriates, and businesses in the UAE.
+            </p>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section id="testimonials" class="py-20 bg-white">
+        <div class="container mx-auto px-6">
+            <h2 class="text-3xl md:text-4xl font-bold text-primary mb-4 text-center slide-in">What Our Clients Say</h2>
+            <div class="w-16 h-1 bg-secondary mx-auto mb-12 slide-in stagger-1"></div>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="bg-light p-6 rounded-xl shadow-md slide-in stagger-2">
+                    <p class="text-gray-700 italic mb-4">"Professional, fast, and reliable! Highly recommend their services to anyone dealing with UAE government documentation."</p>
+                    <h4 class="font-bold text-primary">- Sarah M., Dubai</h4>
+                </div>
+                <div class="bg-light p-6 rounded-xl shadow-md slide-in stagger-3">
+                    <p class="text-gray-700 italic mb-4">"The team helped me with my visa renewal seamlessly. Their support and guidance were top-notch!"</p>
+                    <h4 class="font-bold text-primary">- Ahmed R., Sharjah</h4>
+                </div>
+                <div class="bg-light p-6 rounded-xl shadow-md slide-in stagger-4">
+                    <p class="text-gray-700 italic mb-4">"Great experience! The whole process of getting my Emirates ID renewed was quick and hassle-free."</p>
+                    <h4 class="font-bold text-primary">- Priya K., Abu Dhabi</h4>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-20 bg-primary text-white">
+        <div class="container mx-auto px-6">
+            <h2 class="text-3xl md:text-4xl font-bold text-white mb-4 text-center slide-in">Get in Touch</h2>
+            <div class="w-16 h-1 bg-secondary mx-auto mb-8 slide-in stagger-1"></div>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <form action="#" class="bg-white p-6 rounded-xl shadow-md text-dark slide-in stagger-2">
+                    <div class="mb-4">
+                        <label class="block font-semibold mb-2">Name</label>
+                        <input type="text" class="w-full border border-gray-300 rounded px-4 py-2" placeholder="Your Name">
+                    </div>
+                    <div class="mb-4">
+                        <label class="block font-semibold mb-2">Email</label>
+                        <input type="email" class="w-full border border-gray-300 rounded px-4 py-2" placeholder="Your Email">
+                    </div>
+                    <div class="mb-4">
+                        <label class="block font-semibold mb-2">Message</label>
+                        <textarea class="w-full border border-gray-300 rounded px-4 py-2" rows="4" placeholder="Your Message"></textarea>
+                    </div>
+                    <button class="bg-primary text-white px-6 py-3 rounded-full font-semibold hover:bg-blue-900 transition-all hover-effect">
+                        Send Message
+                    </button>
+                </form>
+                <div class="slide-in stagger-3">
+                    <h3 class="text-2xl font-bold mb-4">Visit Us</h3>
+                    <p class="mb-2"><i class="fas fa-map-marker-alt text-secondary mr-2"></i> Industrial Area, Dubai, UAE</p>
+                    <p class="mb-2"><i class="fas fa-phone-alt text-    secondary mr-2"></i> +971 56 491 0485</p>
+                    <p class="mb-2"><i class="fas fa-envelope text-secondary mr-2"></i> info@albayan-typing.ae</p>
+                    <div class="mt-6">
+                        <iframe class="rounded-xl shadow-md" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3624.4018231658933!2d55.27111861499455!3d25.20484998389162!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3e5f4340c65f7c9b%3A0x8ef1e9e8ed514ed3!2sDubai%20Mall!5e0!3m2!1sen!2sae!4v1623745370286!5m2!1sen!2sae" width="100%" height="250" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-white py-6 text-center">
+        <p>&copy; 2025 Al Bayan Typing Center. All rights reserved.</p>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        const mobileMenuBtn = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+    </script>
+</body>
+</html>
